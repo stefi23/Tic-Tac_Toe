@@ -73,7 +73,12 @@ function markSquare(event) {
 function setMessageOfWhosTurnItIsOrWhoWon(turn) {
   //   let messages = document.querySelector("h2");
   //   messages.textContent = `It's ${turn}'s turn!`;
-  messages.textContent = win ? `${win} wins the game!` : `It's ${turn}'s turn!`;
+  messages.textContent =
+    win === "T"
+      ? `That's a tie, queen!`
+      : win
+      ? `${win} wins the game!`
+      : `It's ${turn}'s turn!`;
 }
 
 function getWinner() {
@@ -88,5 +93,5 @@ function getWinner() {
     }
   });
 
-  return winner;
+  return winner ? winner : board.includes("") ? null : "T";
 }
