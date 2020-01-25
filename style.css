@@ -8,7 +8,6 @@ h2 {
   margin: 10px;
 }
 .flex-container {
-  /* In order to use flex-box we need to first set our display property */
   display: flex;
   /* center the container horizontally */
   justify-content: center;
@@ -31,6 +30,15 @@ h2 {
   border: 2px solid rgba(0, 0, 0, 0.75);
   height: 140px;
   width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
+.square:hover {
+  background-color: red;
+  cursor: pointer;
 }
 #reset-button {
   text-align: center;
