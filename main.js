@@ -31,8 +31,12 @@ let messages = document.querySelector("h2");
 
 /*----- event listeners -----*/
 
+// squares.forEach((square) => {
+//   square.addEventListener("click", markSquare);
+// });
+
 squares.forEach((square) => {
-  square.addEventListener("click", markSquare);
+  square.addEventListener("click", markSquare, { once: "true" });
 });
 
 document
@@ -43,7 +47,10 @@ document
 
 function initializaGame() {
   board = ["", "", "", "", "", "", "", "", ""];
-
+  squares.forEach((square) => {
+    square.addEventListener("click", markSquare, { once: "false" });
+  });
+  console.log(board);
   render();
 }
 
@@ -55,6 +62,7 @@ function render() {
     squares[index].textContent = squareOfBoard;
   });
 
+  console.log(mark);
   setMessageOfWhosTurnItIsOrWhoWon(mark);
 }
 
@@ -73,12 +81,29 @@ function markSquare(event) {
 function setMessageOfWhosTurnItIsOrWhoWon(turn) {
   //   let messages = document.querySelector("h2");
   //   messages.textContent = `It's ${turn}'s turn!`;
-  messages.textContent =
-    win === "T"
-      ? `That's a tie, queen!`
-      : win
-      ? `${win} wins the game!`
-      : `It's ${turn}'s turn!`;
+
+  // messages.textContent =
+  //   win === "T"
+  //     ? `That's a tie, queen!`
+  //     : win
+  //     ? `${win} wins the game!`
+  //     : `It's ${turn}'s turn!`;
+  let emptyBoard = ["", "", "", "", "", "", "", "", ""];
+  // console.log(JSON.stringify(board) === JSON.stringify(emptyBoard));
+  // if (JSON.stringify(board) === JSON.stringify(emptyBoard));{
+  //   messages.textContent = `It's X's turn!`;
+  // }
+
+  if (JSON.stringify(board) === JSON.stringify(emptyBoard)) {
+    messages.textContent = `It's X's turn!`;
+  } else {
+    messages.textContent =
+      win === "T"
+        ? `That's a tie, queen!`
+        : win
+        ? `${win} wins the game!`
+        : `It's ${turn}'s turn!`;
+  }
 }
 
 function getWinner() {
